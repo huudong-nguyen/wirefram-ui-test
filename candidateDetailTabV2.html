@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Freelancer Professional Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4c1d95", // Violet-900 based on the dark purple buttons
+                        "primary-hover": "#3b0764", // Violet-950
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a", // Slate-900
+                        "surface-light": "#f8fafc", // Slate-50
+                        "surface-dark": "#1e293b", // Slate-800
+                        "indigo-custom": "#312E81", // Dark Indigo for Avatar background
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-color: #4c1d95; color: #4c1d95; }.keyword-highlight {
+            transition: all 0.3s ease;
+        }
+        .highlight-active .keyword-highlight {
+            background-color: rgba(139, 92, 246, 0.15);font-weight: 700;
+            color: #4c1d95;padding: 0 4px;
+            border-radius: 4px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .dark .highlight-active .keyword-highlight {
+            background-color: rgba(139, 92, 246, 0.25);
+            color: #d8b4fe;border-color: rgba(139, 92, 246, 0.4);
+        }
+    </style>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('[data-tab-target]');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Remove active class from all tabs
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'border-primary', 'text-primary');
+                        t.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                    });
+                    // Add active class to clicked tab
+                    tab.classList.add('active', 'border-primary', 'text-primary');
+                    tab.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                    // Hide all contents
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Show target content
+                    const target = document.querySelector(tab.dataset.tabTarget);
+                    target.classList.add('active');
+                });
+            });
+            // Keyword toggle functionality
+            const keywordToggleBtn = document.getElementById('keyword-toggle-btn');
+            const experienceContainer = document.getElementById('experience-container');
+            if(keywordToggleBtn && experienceContainer) {
+                keywordToggleBtn.addEventListener('click', () => {
+                    const isActive = keywordToggleBtn.classList.contains('active-state');
+                    if (isActive) {
+                        // Turn off
+                        keywordToggleBtn.classList.remove('active-state', 'bg-purple-100', 'text-primary', 'border-primary');
+                        keywordToggleBtn.classList.add('bg-white', 'text-slate-600', 'border-slate-300');
+                        experienceContainer.classList.remove('highlight-active');
+                        keywordToggleBtn.querySelector('.toggle-text').textContent = 'Show Keywords';
+                        keywordToggleBtn.querySelector('.material-symbols-outlined').textContent = 'flare';
+                    } else {
+                        // Turn on
+                        keywordToggleBtn.classList.add('active-state', 'bg-purple-100', 'text-primary', 'border-primary');
+                        keywordToggleBtn.classList.remove('bg-white', 'text-slate-600', 'border-slate-300');
+                        experienceContainer.classList.add('highlight-active');
+                        keywordToggleBtn.querySelector('.toggle-text').textContent = 'Hide Keywords';
+                        keywordToggleBtn.querySelector('.material-symbols-outlined').textContent = 'check';
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans min-h-screen flex flex-col transition-colors duration-200">
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 lg:px-6 bg-white dark:bg-slate-900 sticky top-0 z-50">
+<div class="flex items-center gap-4 md:gap-6">
+<button class="p-2 -ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-3">
+<button class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-hover shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined text-sm md:text-base">arrow_back_ios_new</span>
+</button>
+<button class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-hover shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined text-sm md:text-base">arrow_forward_ios</span>
+</button>
+</div>
+<span class="text-slate-500 dark:text-slate-400 text-sm md:text-base hidden sm:inline-block truncate">
+                Share Candidate A's profile with your coworkers
+            </span>
+</div>
+<div class="flex items-center">
+</div>
+</header>
+<div class="flex flex-col md:flex-row flex-1 max-w-7xl w-full mx-auto">
+<aside class="w-full md:w-72 lg:w-80 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 p-6 flex flex-col items-center bg-white dark:bg-slate-900 shrink-0">
+<div class="mb-5 relative">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden bg-indigo-custom text-white flex items-center justify-center border-4 border-indigo-100 dark:border-indigo-900 shadow-inner">
+<span class="text-4xl md:text-5xl font-bold">A</span>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Candidate A</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1 text-center">Senior M&amp;A Executive</p>
+<p class="text-sm text-slate-400 dark:text-slate-500 mb-4 text-center">15 years of experience</p>
+<div class="w-full mb-6 flex justify-center">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-sm font-semibold">
+            Matching Score: 87%
+        </div>
+</div>
+<div class="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm text-center mb-2 px-4 justify-center">
+<span class="material-symbols-outlined text-lg shrink-0 mt-0.5">location_on</span>
+<span>Region: Spain</span>
+</div>
+<div class="flex flex-col items-center mb-6">
+<div class="text-green-600 dark:text-green-400 text-sm font-medium flex items-center gap-1 mb-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+            Available in 2 weeks
+        </div>
+<div class="text-slate-500 dark:text-slate-400 text-xs text-center">
+            Time Constraints: Available 5 days/week
+        </div>
+</div>
+<div class="mb-6">
+<span class="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/40 text-primary dark:text-purple-200 font-bold rounded-lg text-lg">
+                    800$/day
+                </span>
+</div>
+<div class="w-full mb-6 text-center">
+<div class="flex flex-wrap gap-2 justify-center">
+<span class="px-2 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-600 dark:text-slate-400">Big 4 Firm</span>
+<span class="px-2 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-600 dark:text-slate-400">Bulge Bracket Bank</span>
+<span class="px-2 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-600 dark:text-slate-400">Top 20 MBA Program</span>
+<span class="px-2 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-600 dark:text-slate-400">Mid-market</span>
+<span class="px-2 py-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded text-xs text-slate-600 dark:text-slate-400">100+ transactions</span>
+</div>
+</div>
+<div class="flex items-center justify-center gap-3 mb-4 w-full">
+<div class="group relative flex flex-col items-center">
+<button class="w-12 h-12 rounded-full border border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all shadow-sm">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<span class="absolute -top-10 scale-0 transition-all rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100 whitespace-nowrap">Request Interview</span>
+</div>
+<div class="group relative flex flex-col items-center">
+<button class="w-12 h-12 rounded-full border border-red-200 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all shadow-sm">
+<span class="material-symbols-outlined">close</span>
+</button>
+<span class="absolute -top-10 scale-0 transition-all rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100 whitespace-nowrap">Reject</span>
+</div>
+<div class="group relative flex flex-col items-center">
+<button class="w-12 h-12 rounded-full bg-primary text-white hover:bg-primary-hover flex items-center justify-center transition-all shadow-md ring-2 ring-primary ring-offset-2">
+<span class="material-symbols-outlined">check</span>
+</button>
+<span class="absolute -top-10 scale-0 transition-all rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100 whitespace-nowrap">Hire</span>
+</div>
+<div class="group relative flex flex-col items-center">
+<button class="w-12 h-12 rounded-full border border-primary text-primary hover:bg-primary hover:text-white flex items-center justify-center transition-all shadow-sm">
+<span class="material-symbols-outlined">chat_bubble_outline</span>
+</button>
+<span class="absolute -top-10 scale-0 transition-all rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100 whitespace-nowrap">Message</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 p-6 md:p-8 lg:p-12 bg-white dark:bg-slate-900">
+<div class="border-b border-slate-200 dark:border-slate-800 mb-8">
+<nav aria-label="Tabs" class="-mb-px flex space-x-6 overflow-x-auto custom-scrollbar">
+<button class="tab-btn active border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 hover:text-primary-hover" data-tab-target="#tab-overview">
+            Overview
+        </button>
+<button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab-target="#tab-pillar-match">
+            Pillar Match
+        </button>
+<button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab-target="#tab-application">
+            Application
+        </button>
+<button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab-target="#tab-experience">
+            Experience and Education
+        </button>
+<button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab-target="#tab-notes">
+            Notes
+        </button>
+</nav>
+</div>
+<div class="tab-content active" id="tab-overview">
+<div class="rounded-xl border border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-900/10 p-6 mb-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl text-primary">format_quote</span>
+</div>
+<h2 class="text-base md:text-lg font-bold text-primary dark:text-purple-300 mb-3 relative z-10">
+            Why is the candidate match your project?
+        </h2>
+<p class="text-slate-700 dark:text-slate-300 italic text-sm md:text-base leading-relaxed relative z-10">
+            "Candidate A demonstrates exceptional alignment with the project requirements, particularly in cross-border M&amp;A and Portuguese market dynamics. Their extensive leadership in transactions perfectly bridges the gap we identified in our current team structure."
+        </p>
+</div>
+<section class="mb-10">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Pillar Summary</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Cross-border M&amp;A &amp; Portuguese Market</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                            8.5/10
+                        </span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">M&amp;A Transaction Leadership</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                            8/10
+                        </span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Valuation &amp; Analytics</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                            7/10
+                        </span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Proactive Origination (gap)</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                            2/10
+                        </span>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<h3 class="text-lg font-bold text-primary dark:text-purple-400 mb-3">About</h3>
+<div class="text-slate-600 dark:text-slate-300 text-sm md:text-base space-y-2 mb-2">
+<p>Experienced professional with a proven track record in Mergers &amp; Acquisitions. Skilled in financial modeling, due diligence, and deal structuring.</p>
+</div>
+<button class="inline-flex items-center gap-1 text-primary dark:text-purple-400 font-semibold text-sm hover:underline mt-1">
+            Show More <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</section>
+<div class="border-t border-slate-200 dark:border-slate-800 py-8">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-2xl text-slate-400 dark:text-slate-500">workspace_premium</span>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Seniority Level</p>
+<p class="font-semibold text-slate-900 dark:text-slate-100">Senior Executive</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-2xl text-slate-400 dark:text-slate-500">person_outline</span>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Years of Experience</p>
+<p class="font-semibold text-slate-900 dark:text-slate-100">15 Years</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-2xl text-slate-400 dark:text-slate-500">language</span>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Language</p>
+<p class="font-semibold text-slate-900 dark:text-slate-100">English (Fluent), German (Fluent), Spanish (Native)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content" id="tab-pillar-match">
+<div class="mb-10">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Pillar Match Breakdown</h2>
+<div class="bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-xl p-6 mb-8">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200">Overall Match</h3>
+<span class="text-lg font-bold text-green-600 dark:text-green-400">87%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+<div class="bg-green-600 h-2.5 rounded-full" style="width: 87%"></div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Based on weighted requirements analysis</p>
+</div>
+<div class="mb-8">
+<h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">MUST-HAVE REQUIREMENTS (3/4 met)</h3>
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-lg border border-green-200 dark:border-green-900 shadow-sm overflow-hidden">
+<div class="p-5 border-l-4 border-green-500">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-3">
+<div class="shrink-0 w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-sm text-green-600 dark:text-green-400">check</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Cross-border M&amp;A &amp; Portuguese Market Expertise</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Weight: 35%</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-100 dark:border-green-800">
+                                            8.5/10
+                                        </span>
+</div>
+</div>
+<div class="mt-4 pl-9">
+<div class="mb-4">
+<p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase mb-1">Your Requirement</p>
+<p class="text-sm text-slate-700 dark:text-slate-300">Experience in cross-border M&amp;A with Portugal focus</p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4">
+<p class="text-xs font-bold text-primary dark:text-purple-400 uppercase mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">search</span> Evidence
+                                </p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-base shrink-0 mt-0.5">check_circle</span>
+<span>Languages: Portuguese (Native)</span>
+</li>
+<li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-base shrink-0 mt-0.5">check_circle</span>
+<span>Work: "Led complex transactions in Portugal" </span>
+</li>
+<li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-base shrink-0 mt-0.5">check_circle</span>
+<span>Experience: Cross-border M&amp;A at Global Bank (2 years)</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-lg border border-green-200 dark:border-green-900 shadow-sm overflow-hidden">
+<div class="p-5 border-l-4 border-green-500">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-3">
+<div class="shrink-0 w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-sm text-green-600 dark:text-green-400">check</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">M&amp;A Transaction Leadership</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Weight: 30%</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-100 dark:border-green-800">
+                                            8/10
+                                        </span>
+</div>
+</div>
+<div class="mt-4 pl-9">
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4">
+<p class="text-xs font-bold text-primary dark:text-purple-400 uppercase mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">search</span> Evidence
+                                </p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-base shrink-0 mt-0.5">check_circle</span>
+<span>Seniority: "Senior Executive" level demonstrated in history</span>
+</li>
+<li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-green-500 text-base shrink-0 mt-0.5">check_circle</span>
+<span>History: 15+ years managing high-stakes deal execution</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-lg border border-red-200 dark:border-red-900 shadow-sm overflow-hidden">
+<div class="p-5 border-l-4 border-red-500">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-3">
+<div class="shrink-0 w-6 h-6 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-sm text-red-600 dark:text-red-400">close</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Proactive Origination (GAP)</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Weight: 20%</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-100 dark:border-red-800">
+                                            2/10
+                                        </span>
+</div>
+</div>
+<div class="mt-4 pl-9">
+<div class="bg-red-50 dark:bg-red-900/10 rounded-lg p-4">
+<p class="text-xs font-bold text-red-600 dark:text-red-400 uppercase mb-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span> Missing Evidence
+                                </p>
+<p class="text-sm text-slate-600 dark:text-slate-300">
+                                    No explicit evidence of deal sourcing or origination found in candidate profile or application.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">PREFERRED REQUIREMENTS</h3>
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+<div class="p-5 border-l-4 border-yellow-400">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-3">
+<div class="shrink-0 w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-sm text-yellow-700 dark:text-yellow-400">star</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Valuation &amp; Analytics</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Weight: 15%</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+                                            7/10
+                                        </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content" id="tab-application">
+<div class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center">
+<span class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide mb-2">Quoted Rate</span>
+<span class="text-3xl font-bold text-slate-900 dark:text-white">800$/day</span>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center">
+<span class="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide mb-2">Availability</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">calendar_month</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white">5 days/week</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+<div class="bg-slate-50 dark:bg-slate-800/50 px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">record_voice_over</span> CANDIDATE'S PITCH
+                </h3>
+</div>
+<div class="p-6">
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                   "I am a seasoned M&amp;A professional with over 15 years of experience, having led numerous cross-border transactions specifically within the European market. My background includes tenure at a Global Bank where I managed high-volume deal execution. I am particularly adept at navigating the Portuguese market regulatory landscape and have a strong track record in complex deal structuring and negotiation."
+                </p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+<div class="bg-slate-50 dark:bg-slate-800/50 px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+<h3 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">quiz</span> SCREENING QUESTIONS
+                </h3>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-2">Q1. Describe a complex deal you led.</p>
+<div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg text-sm text-slate-700 dark:text-slate-300 italic">
+                        "In 2019, I led the buy-side advisory for a major telecommunications merger. The deal involved navigating complex regulatory hurdles regarding foreign ownership..."
+                    </div>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mb-2">Q2. How do you handle valuation disagreements?</p>
+<div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg text-sm text-slate-700 dark:text-slate-300 italic">
+                        "I focus on bridging the gap through earn-out structures and robust financial modeling that transparently highlights sensitivity drivers..."
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content" id="tab-experience">
+<div id="experience-container">
+<section class="mb-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-primary dark:text-purple-400">Work Experience</h3>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-primary shadow-sm" id="keyword-toggle-btn">
+<span class="material-symbols-outlined text-base">flare</span>
+<span class="toggle-text">Show Keywords</span>
+</button>
+</div>
+<div>
+<div class="group relative pl-4 border-l-2 border-slate-200 dark:border-slate-700 pb-8 last:pb-0">
+<span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-slate-900"></span>
+<div class="mb-4">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Managing Director / Founder</h4>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+<span class="font-medium text-slate-700 dark:text-slate-300">Boutique Advisory Firm</span>
+<span class="w-1 h-1 rounded-full bg-slate-400"></span>
+<span>Madrid</span>
+<span class="w-1 h-1 rounded-full bg-slate-400"></span>
+<span>Jan 2018 - Present</span>
+</p>
+<div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+<p>Leading boutique advisory firm specializing in <span class="keyword-highlight">Mid-market</span> M&amp;A. Responsible for origination and execution of sell-side mandates across the Iberian peninsula.</p>
+</div>
+</div>
+</div>
+<div class="group relative pl-4 border-l-2 border-slate-200 dark:border-slate-700 pb-8 last:pb-0">
+<span class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-900"></span>
+<div class="mb-4">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Global Bank</h4>
+<div class="relative group/tooltip inline-block">
+<span class="material-symbols-outlined text-slate-400 text-sm cursor-help">info</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-2 bg-slate-800 text-white text-xs rounded shadow-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all z-10">
+                             Key Highlights: 100+ transactions, Mid-market, High-volume deal execution, Cross-border transactions
+                         </div>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+<span class="font-medium text-slate-700 dark:text-slate-300"><span class="keyword-highlight">Bulge Bracket Bank</span></span>
+<span class="w-1 h-1 rounded-full bg-slate-400"></span>
+<span>London</span>
+<span class="w-1 h-1 rounded-full bg-slate-400"></span>
+<span>Jun 2010 - Dec 2017</span>
+</p>
+<div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+<p>
+                        Managed <span class="keyword-highlight">100+ transactions</span> focusing on <span class="keyword-highlight">Mid-market</span> clients. Specialized in <span class="keyword-highlight">High-volume deal execution</span> and <span class="keyword-highlight">Cross-border transactions</span> at this <span class="keyword-highlight">corporate finance boutique</span>.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<h3 class="text-lg font-bold text-primary dark:text-purple-400 mb-6">Education</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-500">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white"><span class="keyword-highlight">Top European Business School</span></h4>
+<p class="text-sm text-slate-600 dark:text-slate-300">Master of Business Administration (MBA)</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">2008 - 2010</p>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h3 class="text-lg font-bold text-primary dark:text-purple-400 mb-6">Certifications</h3>
+<div class="flex flex-wrap gap-3">
+<span class="px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-yellow-500">verified</span>
+                CFA Level III
+            </span>
+<span class="px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-blue-500">verified</span>
+                Chartered Alternative Investment Analyst (CAIA)
+            </span>
+</div>
+</section>
+</div>
+</div>
+<div class="tab-content" id="tab-notes">
+<div class="text-center py-20 text-slate-400 dark:text-slate-600">
+<span class="material-symbols-outlined text-6xl mb-4">edit_note</span>
+<p>Notes content will appear here</p>
+</div>
+</div>
+</main>
+</div>
+</body></html>
